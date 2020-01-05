@@ -1,5 +1,5 @@
 <div><h2>Vodafone DE Bavaria Market</h2></div>
-<div class="market-img" *ngIf="display">
+<div class="container">
     <nav>
         <ul class="menu">
             <li (click)="getServers()"><a>View All Servers</a></li>
@@ -10,6 +10,8 @@
         </ul>
     </nav>
 </div>
+
+<div class="market-img" *ngIf="display"></div>
 
 <div *ngIf="server">
     <table id="serverTable">
