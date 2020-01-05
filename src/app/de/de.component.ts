@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 })
 export class DeComponent implements OnInit {
 
-  // @ts-ignore
+
   @ViewChild('chartElement') chartElement: ElementRef<HTMLElement>;
 
   constructor(private router: Router) { }
@@ -19,7 +19,8 @@ export class DeComponent implements OnInit {
   ngOnInit() {
 
     // Create map instance
-    const chart = am4core.create(this.chartElement.nativeElement, am4maps.MapChart);
+    // const chart = am4core.create(this.chartElement.nativeElement, am4maps.MapChart);
+    const chart = am4core.create('germanyDiv', am4maps.MapChart);
 
     // Set map definition
     chart.geodata = am4geodata_region_usa_caLow;
@@ -73,7 +74,7 @@ export class DeComponent implements OnInit {
     // tslint:disable-next-line:only-arrow-functions
     setTimeout(function() {
       document.getElementById('germanyRoot').style.display = 'block';
-    }, 0);
+    }, 100);
   }
 
 }

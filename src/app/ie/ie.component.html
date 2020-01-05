@@ -1,13 +1,101 @@
-<div><h2>Vodafone UK Market</h2></div>
-<div class="market-img">
+<div><h2>Vodafone IE Market</h2></div>
+<div class="market-img" *ngIf="display">
     <nav>
         <ul class="menu">
-            <li><a href="#!" >View All Servers</a></li>
-            <li><a href="#!">Market Databases</a></li>
+            <li (click)="getServers()"><a>View All Servers</a></li>
+            <li (click)="getDatabases()"><a>Market Databases</a></li>
             <li><a href="#!">Select Business Service</a></li>
             <li><a href="#!">Select Technical Service</a></li>
             <li><a href="#!">Reports</a></li>
         </ul>
     </nav>
 </div>
+
+<div *ngIf="server">
+    <table id="serverTable">
+        <thead>
+        <tr>
+            <th>Technical Service ID</th>
+            <th>Technical Service</th>
+            <th>Component</th>
+            <th>Server Name</th>
+            <th>Propagation Rule</th>
+            <th>Type</th>
+            <th>Database</th>
+            <th>IP address</th>
+            <th>IP address 2</th>
+            <th>OS</th>
+            <th>Physical/VM</th>
+            <th>Location</th>
+            <th>System Owner</th>
+            <th>1st Level Support</th>
+            <th>2nd Level Support</th>
+            <th>3rd Level Support</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let item of data">
+            <td>{{ item.Technical_Service_ID }}</td>
+            <td>{{ item.Technical_Service }}</td>
+            <td>{{ item.Component }}</td>
+            <td>{{ item.Server_Name }}</td>
+            <td>{{ item.Propagation_Rule }}</td>
+            <td>{{ item.Type }}</td>
+            <td>{{ item.Database }}</td>
+            <td>{{ item.IP_address }}</td>
+            <td>{{ item.IP_address_2 }}</td>
+            <td>{{ item.OS }}</td>
+            <td>{{ item['Physical/VM'] }}</td>
+            <td>{{ item.Location }}</td>
+            <td>{{ item.System_Owner }}</td>
+            <td>{{ item['1st_Level_Support'] }}</td>
+            <td>{{ item['2nd_Level_Support'] }}</td>
+            <td>{{ item['3rd_Level_Support'] }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="database">
+    <table id="databaseTable">
+        <thead>
+        <tr>
+            <th>Technical Service ID</th>
+            <th>Technical Service</th>
+            <th>DataBase</th>
+            <th>Server Name</th>
+            <th>Propagation Rule</th>
+            <th>Type</th>
+            <th>User</th>
+            <th>IP address</th>
+            <th>Port</th>
+            <th>OS</th>
+            <th>System_Owner</th>
+            <th>1st Level Support</th>
+            <th>2nd Level Support</th>
+            <th>3rd Level Support</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of data">
+            <td>{{ item.Technical_Service_ID }}</td>
+            <td>{{ item.Technical_Service }}</td>
+            <td>{{ item.Data_Base }}</td>
+            <td>{{ item.Server_Name }}</td>
+            <td>{{ item.Propagation_Rule }}</td>
+            <td>{{ item.Type }}</td>
+            <td>{{ item.user }}</td>
+            <td>{{ item.IP_address }}</td>
+            <td>{{ item.Port }}</td>
+            <td>{{ item.OS }}</td>
+            <td>{{ item.System_Owner }}</td>
+            <td>{{ item['1st_Level_Support'] }}</td>
+            <td>{{ item['2nd_Level_Support'] }}</td>
+            <td>{{ item['3rd_Level_Support'] }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 
