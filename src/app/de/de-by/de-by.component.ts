@@ -12,7 +12,9 @@ export class DeByComponent implements OnInit {
     public display = true;
     public server = false;
     public database = false;
+    public openUrl = false;
     public data: any;
+    link = 'https://www.webpagetest.org/';
 
     constructor(private deByService: DeByServiceService) { }
 
@@ -24,6 +26,7 @@ export class DeByComponent implements OnInit {
         this.deByService.getServers().subscribe((data: any) => {
             this.display = false;
             this.server = true;
+            this.openUrl = false;
             this.data = data;
         });
     }
@@ -32,6 +35,7 @@ export class DeByComponent implements OnInit {
         this.deByService.getDatabases().subscribe((data: any) => {
             this.display = false;
             this.database = true;
+            this.openUrl = false;
             this.data = data;
         });
     }
@@ -42,5 +46,10 @@ export class DeByComponent implements OnInit {
         });
     }
 
-
+    openLink() {
+        this.display = false;
+        this.openUrl = true;
+        this.server = false;
+        this.database = false;
+    }
 }

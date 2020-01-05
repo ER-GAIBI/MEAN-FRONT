@@ -8,7 +8,7 @@ import { RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import { MarketComponent } from './market/market.component';
 import { DeComponent } from './de/de.component';
-import { GbComponent } from './gb/gb.component';
+import {GbComponent, SafePipe} from './gb/gb.component';
 import { GrComponent } from './gr/gr.component';
 import { IeComponent } from './ie/ie.component';
 import { ItComponent } from './it/it.component';
@@ -33,6 +33,7 @@ import { DeByComponent } from './de/de-by/de-by.component';
     EsComponent,
     DeNwComponent,
     DeByComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

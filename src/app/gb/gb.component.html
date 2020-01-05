@@ -6,12 +6,14 @@
             <li (click)="getDatabases()"><a>Market Databases</a></li>
             <li><a>Select Business Service</a></li>
             <li><a>Select Technical Service</a></li>
-            <li><a>Reports</a></li>
+            <li (click)="openLink()"><a>Reports</a></li>
         </ul>
     </nav>
 </div>
 
 <div class="market-img" *ngIf="display"></div>
+
+<iframe class="website" *ngIf="openUrl" [src]="link | safe"></iframe>
 
 <div *ngIf="server">
     <table id="serverTable">
