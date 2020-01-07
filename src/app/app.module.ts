@@ -17,6 +17,7 @@ import { QaComponent } from './qa/qa.component';
 import { EsComponent } from './es/es.component';
 import { DeNwComponent } from './de/de-nw/de-nw.component';
 import { DeByComponent } from './de/de-by/de-by.component';
+import { ProjectListComponentComponent } from './project-list-component/project-list-component.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DeByComponent } from './de/de-by/de-by.component';
     EsComponent,
     DeNwComponent,
     DeByComponent,
-    SafePipe
+    SafePipe,
+    ProjectListComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,9 @@ import { DeByComponent } from './de/de-by/de-by.component';
       {path: '', component: LoginComponent},
       {path: 'market', component: MarketComponent},
       {path: 'de', component: DeComponent},
-      {path: 'gb', component: GbComponent},
+      {path: 'gb', component: GbComponent,
+        children: [{path:  'list', component:  ProjectListComponentComponent}]
+      },
       {path: 'gr', component: GrComponent},
       {path: 'ie', component: IeComponent},
       {path: 'it', component: ItComponent},

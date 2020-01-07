@@ -4,18 +4,30 @@
         <ul class="menu">
             <li (click)="getServers()"><a>View All Servers</a></li>
             <li (click)="getDatabases()"><a>Market Databases</a></li>
-            <li><a>Select Business Service</a></li>
-            <li><a>Select Technical Service</a></li>
+            <li><a>
+                    <select name="selectBusinessService" id="businessService" (change)="businessServiceChange($event)">
+                        <option *ngFor="let op of listBusinessServices" [value]="op.Technical_Service"> {{op.Technical_Service}} </option>
+                    </select>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <select name="SelectTechnicalService" id="techServices" (change)="techServiceChange($event)">
+                        <option *ngFor="let op of listTechServices" [value]="op.Technical_Service"> {{op.Technical_Service}} </option>
+                    </select>
+                </a>
+
+            </li>
             <li (click)="openLink()"><a>Reports</a></li>
         </ul>
     </nav>
 </div>
 
-<div class="market-img" *ngIf="display"></div>
+<div class="market-img" *ngIf="display$.value"></div>
 
-<iframe class="website" *ngIf="openUrl" [src]="link | safe"></iframe>
+<iframe class="website" *ngIf="openUrl$.value" [src]="link | safe"></iframe>
 
-<div *ngIf="server">
+<div *ngIf="server$.value">
     <table id="serverTable">
         <thead>
         <tr>
@@ -61,7 +73,7 @@
     </table>
 </div>
 
-<div *ngIf="database">
+<div *ngIf="database$.value">
     <table id="databaseTable">
         <thead>
         <tr>
@@ -101,4 +113,7 @@
         </tbody>
     </table>
 </div>
+
+<div *ngIf="technicalService$.value"></div>
+<div *ngIf="businessService$.value"></div>
 

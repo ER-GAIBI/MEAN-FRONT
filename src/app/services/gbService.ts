@@ -21,4 +21,8 @@ export class GbService {
     getBusinnesService() {
         return this.http.get(this.url + '/businessServiceUk');
     }
+
+    getTechnicalService() {
+        return this.http.get(this.url + '/technicalServiceForUk');
+    }
 }
