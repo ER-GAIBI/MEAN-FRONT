@@ -25,4 +25,10 @@ export class GbService {
     getTechnicalService() {
         return this.http.get(this.url + '/technicalServiceForUk');
     }
+
+    getPdf() {
+        this.http.get(this.url + '/pdf', {responseType: 'blob'}).subscribe(data => {
+            window.open(window.URL.createObjectURL(data));
+        });
+    }
 }

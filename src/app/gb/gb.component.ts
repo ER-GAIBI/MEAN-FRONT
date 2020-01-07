@@ -149,7 +149,9 @@ export class GbComponent implements OnInit {
 
     businessServiceChange(event) {
         this.businnessService = event.target.value !== '-- Select Businness Service --';
-        this.businessService$.next(this.businnessService);
+        //this.businessService$.next(this.businnessService);
+        this.display$.next(true);
+        this.gbService.getPdf();
     }
 
 }
