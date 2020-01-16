@@ -17,7 +17,8 @@ import { QaComponent } from './qa/qa.component';
 import { EsComponent } from './es/es.component';
 import { DeNwComponent } from './de/de-nw/de-nw.component';
 import { DeByComponent } from './de/de-by/de-by.component';
-import { ProjectListComponentComponent } from './project-list-component/project-list-component.component';
+import { TechnicalUkComponent } from './gb/technical-uk/technical-uk.component';
+import { RequirementUkComponent } from './gb/technical-uk/requirement-uk/requirement-uk.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ProjectListComponentComponent } from './project-list-component/project-
     DeNwComponent,
     DeByComponent,
     SafePipe,
-    ProjectListComponentComponent
+    TechnicalUkComponent,
+    RequirementUkComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,9 +48,7 @@ import { ProjectListComponentComponent } from './project-list-component/project-
       {path: '', component: LoginComponent},
       {path: 'market', component: MarketComponent},
       {path: 'de', component: DeComponent},
-      {path: 'gb', component: GbComponent,
-        children: [{path:  'list', component:  ProjectListComponentComponent}]
-      },
+      {path: 'gb', component: GbComponent},
       {path: 'gr', component: GrComponent},
       {path: 'ie', component: IeComponent},
       {path: 'it', component: ItComponent},
@@ -57,6 +57,8 @@ import { ProjectListComponentComponent } from './project-list-component/project-
       {path: 'es', component: EsComponent},
       {path: 'de-nw', component: DeNwComponent},
       {path: 'de-by', component: DeByComponent},
+      {path: 'gbTechnical', component: TechnicalUkComponent},
+      {path: 'gbRequirement', component: RequirementUkComponent},
     ])
   ],
   providers: [],

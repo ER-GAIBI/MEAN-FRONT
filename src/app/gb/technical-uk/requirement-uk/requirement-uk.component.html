@@ -1,0 +1,59 @@
+<div class="title"><h2>Application Requirements</h2></div>
+
+<div>
+    <table id="serverTable">
+        <thead>
+        <tr>
+            <th>Requirement ID</th>
+            <th>Technical Service</th>
+            <th>Component</th>
+            <th>Requirement</th>
+            <th>Details</th>
+            <th>Type</th>
+            <th>Business Service Group X</th>
+            <th>Tool</th>
+            <th>Propagation rule</th>
+            <th>Event NO Event</th>
+            <th>KPIs</th>
+            <th>Requirement Monitor Type</th>
+            <th>Discovery Status</th>
+            <th>Firewall Status</th>
+            <th>Access Status</th>
+            <th>Monitor Implementation Status</th>
+            <th>Overall Imp Status</th>
+            <th>QA Status</th>
+            <th>Testing Status</th>
+            <th>Blocking Reasons</th>
+            <th>Comments</th>
+            <th>Demand ID</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let item of data">
+            <td>{{ item.Req_ID }}</td>
+            <td>{{ item.Technical_Service }}</td>
+            <td>{{ item.Component }}</td>
+            <td>{{ item.Requirement }}</td>
+            <td>{{ item.Details }}</td>
+            <td>{{ item.Type }}</td>
+            <td>{{ item.Business_Service_Group_X }}</td>
+            <td>{{ item.Tool }}</td>
+            <td>{{ item.Propagation_rule }}</td>
+            <td>{{ item.Event_no_Event }}</td>
+            <td>{{ item.KPIs }}</td>
+            <td>{{ item.Requirement_Monitor_Type }}</td>
+            <td>{{ item.Discovery_Status }}</td>
+            <td>{{ item['Firewall_Status'] }}</td>
+            <td>{{ item['Access_Status'] }}</td>
+            <td>{{ item['Monitor_Implementation_Status'] }}</td>
+            <td>{{ item['Overall_Imp._Status'] }}</td>
+            <td>{{ item['QA_Status'] }}</td>
+            <td>{{ item['Testing_Status'] }}</td>
+            <td>{{ item['Blocking_Reasons'] }}</td>
+            <td>{{ item['Comments'] }}</td>
+            <td>{{ item['Demand_ID'] }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

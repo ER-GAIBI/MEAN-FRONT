@@ -1,29 +1,20 @@
-<div class="title"><h2>Vodafone UK Market</h2></div>
+<div class="title"><h2>Technical Service</h2></div>
 <div class="container">
     <nav>
         <ul class="menu">
-            <li (click)="getServers()"><a>View All Servers</a></li>
-            <li (click)="getDatabases()"><a>Market Databases</a></li>
-            <li><a>
-                    <select name="selectBusinessService" id="businessService" (change)="businessServiceChange($event)">
-                        <option *ngFor="let op of listBusinessServices" [value]="op.Technical_Service"> {{op.Technical_Service}} </option>
-                    </select>
-                </a>
-            </li>
+            <li (click)="getTechnicalServersApplicationServers()"><a>Application Servers</a></li>
+            <li (click)="getTechnicalServersApplicationDatabases()"><a>Application Databases</a></li>
             <li>
                 <a>
-                    <select name="SelectTechnicalService" id="techServices" (change)="techServiceChange($event)">
-                        <option *ngFor="let op of listTechServices" [value]="op.Technical_Service"> {{op.Technical_Service}} </option>
+                    <select name="selectTechnicalServiceApplicationRequirement" id="applicationReq" (change)="applicationChange($event)">
+                        <option *ngFor="let op of listApplicationRequirement" [value]="op.Requirement_Monitor_Type"> {{op.Requirement_Monitor_Type}} </option>
                     </select>
                 </a>
-
             </li>
             <li (click)="openLink()"><a>Reports</a></li>
         </ul>
     </nav>
 </div>
-
-<div class="market-img" *ngIf="display$.value"></div>
 
 <div *ngIf="server$.value">
     <table id="serverTable">
@@ -112,9 +103,8 @@
     </table>
 </div>
 
-<div *ngIf="technicalService$.value">
-    <a [routerLink]="['/gbTechnical', selectedElement]"></a>
+<div *ngIf="application$.value">
+    <a [routerLink]="['/gbRequirement', selectedRequirement]"></a>
 </div>
-<div *ngIf="businessService$.value"></div>
 
-<iframe class="website" *ngIf="openUrl$.value" [src]="link | safe"></iframe>
+<iframe class="website" *ngIf="report$.value" [src]="link | safe"></iframe>

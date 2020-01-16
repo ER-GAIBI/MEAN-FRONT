@@ -2,6 +2,7 @@ import {Component, OnInit, Pipe, PipeTransform, SecurityContext} from '@angular/
 import {GbService} from '../services/gbService';
 import {DomSanitizer} from '@angular/platform-browser';
 import {BehaviorSubject} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Pipe({name: 'safe'})
 export class SafePipe implements PipeTransform {
@@ -21,6 +22,7 @@ export class SafePipe implements PipeTransform {
 })
 export class GbComponent implements OnInit {
 
+    public selectedElement: string;
     public display$ = new BehaviorSubject(true);
     public server$ = new BehaviorSubject(false);
     public database$ = new BehaviorSubject(false);
@@ -40,7 +42,8 @@ export class GbComponent implements OnInit {
     listTechServices = [{Technical_Service: '-- Select Technical Service --'}];
     listBusinessServices = [{Technical_Service: '-- Select Business Service --'}];
 
-    constructor(private gbService: GbService) {
+    constructor(private gbService: GbService,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -103,9 +106,6 @@ export class GbComponent implements OnInit {
 
     getServers() {
         this.gbService.getServers().subscribe((data: any) => {
-            /*this.display = false;
-            this.server = true;
-            this.openUrl = false;*/
             this.server$.next(true);
             this.data = data;
         });
@@ -113,19 +113,12 @@ export class GbComponent implements OnInit {
 
     getDatabases() {
         this.gbService.getDatabases().subscribe((data: any) => {
-            /*this.display = false;
-            this.database = true;
-            this.openUrl = false;*/
             this.data = data;
             this.database$.next(true);
         });
     }
 
     openLink() {
-/*        this.display = false;
-        this.openUrl = true;
-        this.server = false;
-        this.database = false;*/
         this.openUrl$.next(true);
     }
 
@@ -135,7 +128,6 @@ export class GbComponent implements OnInit {
         });
     }
 
-    // TODO : same as getTechnicalService
     getBusinnesService() {
         this.gbService.getTechnicalService().subscribe((data: any) => {
             this.listBusinessServices = [{Technical_Service: '-- Select Businness Service --'}, ...data];
@@ -145,11 +137,13 @@ export class GbComponent implements OnInit {
     techServiceChange(event) {
         this.technicalService = event.target.value !== '-- Select Technical Service --';
         this.technicalService$.next(this.technicalService);
+        this.selectedElement = event.target.value;
+        this.router.navigate(['/gbTechnical', {selected: this.selectedElement}]);
     }
 
     businessServiceChange(event) {
         this.businnessService = event.target.value !== '-- Select Businness Service --';
-        //this.businessService$.next(this.businnessService);
+        // this.businessService$.next(this.businnessService);
         this.display$.next(true);
         this.gbService.getPdf();
     }

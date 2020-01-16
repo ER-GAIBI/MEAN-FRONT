@@ -19,7 +19,12 @@ export class TechnicalService {
         return this.http.post(this.url + '/selectedTechnicalServerApplicationDatabasesUk?selectedElement=' + selectedElement, null);
     }
 
-    getTechnicalServerApplicationRequirementUk() {
-        return this.http.get(this.url + '/selectedTechnicalServerApplicationRequirementUk');
+    getTechnicalServerApplicationRequirementUk(selectedElement: any) {
+        return this.http.post(this.url + '/selectedTechnicalServerApplicationRequirementUk?selectedElement=' + selectedElement, null);
+    }
+
+    getRequirementUk(selectedTechnical: any, selectedRequirement: any) {
+        return this.http.post(this.url + '/requirementUk?selectedElement=' + selectedTechnical
+            + '&selectedRequirement=' + selectedRequirement, null);
     }
 }
