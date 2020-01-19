@@ -1,4 +1,106 @@
 <div class="title"><h2>Application Requirements</h2></div>
+<button id="add1" type="button" class="btn btn-primary" (click)="addData()">Add</button>
+<button id="delete" type="button" class="btn btn-primary" (click)="deleteData()">delete</button>
+
+<div *ngIf="addDataDiv">
+    <div class="form-inline">
+        <div class="form-group">
+            <label for="Requirement_ID">Requirement ID</label>
+            <input type="text" class="form-control" id="Requirement_ID" [(ngModel)]="Requirement_ID">
+        </div>
+        <div class="form-group">
+            <label for="Technical_Service">Technical Service</label>
+            <input type="text" class="form-control" id="Technical_Service" [(ngModel)]="Technical_Service">
+        </div>
+        <div class="form-group">
+            <label for="Component">Component</label>
+            <input type="text" class="form-control" id="Component" [(ngModel)]="Component">
+        </div>
+        <div class="form-group">
+            <label for="Requirement">Requirement</label>
+            <input type="text" class="form-control" id="Requirement" [(ngModel)]="Requirement">
+        </div>
+        <div class="form-group">
+            <label for="Details">Details</label>
+            <input type="text" class="form-control" id="Details" [(ngModel)]="Details">
+        </div>
+        <div class="form-group">
+            <label for="Type">Type</label>
+            <input type="text" class="form-control" id="Type" [(ngModel)]="Type">
+        </div>
+        <div class="form-group">
+            <label for="Business Service Group X">Business Service Group X</label>
+            <input type="text" class="form-control" id="Business Service Group X" [(ngModel)]="Business_Service_Group_X">
+        </div>
+        <div class="form-group">
+            <label for="Tool">Tool</label>
+            <input type="text" class="form-control" id="Tool" [(ngModel)]="Tool">
+        </div>
+        <div class="form-group">
+            <label for="Propagation_rule">Propagation rule</label>
+            <input type="text" class="form-control" id="Propagation_rule" [(ngModel)]="Propagation_rule">
+        </div>
+        <div class="form-group">
+            <label for="Event NO Event">Event NO Event</label>
+            <input type="text" class="form-control" id="Event NO Event" [(ngModel)]="Event_NO_Event">
+        </div>
+        <div class="form-group">
+            <label for="KPIs">Port</label>
+            <input type="text" class="form-control" id="KPIs" [(ngModel)]="KPIs">
+        </div>
+        <div class="form-group">
+            <label for="Requirement Monitor Type">Requirement Monitor Type</label>
+            <input type="text" class="form-control" id="Requirement Monitor Type" [(ngModel)]="Requirement_Monitor_Type">
+        </div>
+        <div class="form-group">
+            <label for="Discovery Status">Discovery Status</label>
+            <input type="text" class="form-control" id="Discovery Status" [(ngModel)]="Discovery_Status">
+        </div>
+        <div class="form-group">
+            <label for="Firewall Status">Firewall Status</label>
+            <input type="text" class="form-control" id="Firewall Status" [(ngModel)]="Firewall_Status">
+        </div>
+        <div class="form-group">
+            <label for="Access Status">Access Statusr</label>
+            <input type="text" class="form-control" id="Access Status" [(ngModel)]="Access_Status">
+        </div>
+        <div class="form-group">
+            <label for="Monitor Implementation Status">Monitor Implementation Status</label>
+            <input type="text" class="form-control" id="Monitor Implementation Status" [(ngModel)]="Monitor_Implementation_Status">
+        </div>
+        <div class="form-group">
+            <label for="Overall Imp Status">Overall Imp Status</label>
+            <input type="text" class="form-control" id="Overall Imp Status" [(ngModel)]="Overall_Imp_Status">
+        </div>
+        <div class="form-group">
+            <label for="QA Status">QA Status</label>
+            <input type="text" class="form-control" id="QA Status" [(ngModel)]="QA_Status">
+        </div>
+        <div class="form-group">
+            <label for="Testing Status">Testing Status</label>
+            <input type="text" class="form-control" id="Testing Status" [(ngModel)]="Testing_Status">
+        </div>
+        <div class="form-group">
+            <label for="Blocking Reasons">Blocking Reasons</label>
+            <input type="text" class="form-control" id="Blocking Reasons" [(ngModel)]="Blocking_Reasons">
+        </div>
+        <div class="form-group">
+            <label for="Comments">Comments</label>
+            <input type="text" class="form-control" id="Comments" [(ngModel)]="Comments">
+        </div>
+        <div class="form-group">
+            <label for="Demand ID">Demand ID</label>
+            <input type="text" class="form-control" id="Demand ID" [(ngModel)]="Demand_ID">
+        </div>
+    </div>
+    <button id="add2" type="button" class="btn btn-primary" (click)="send()">send</button>
+</div>
+
+<div *ngIf="deleteDiv">
+    <label for="deleteField">Requirement ID</label>
+    <input type="text" id="deleteField" [(ngModel)]="deleteId">
+    <button type="button" class="btn btn-primary" (click)="delete()">Send</button>
+</div>
 
 <div>
     <table id="serverTable">
@@ -31,28 +133,28 @@
 
         <tbody>
         <tr *ngFor="let item of data">
-            <td>{{ item.Req_ID }}</td>
-            <td>{{ item.Technical_Service }}</td>
-            <td>{{ item.Component }}</td>
-            <td>{{ item.Requirement }}</td>
-            <td>{{ item.Details }}</td>
-            <td>{{ item.Type }}</td>
-            <td>{{ item.Business_Service_Group_X }}</td>
-            <td>{{ item.Tool }}</td>
-            <td>{{ item.Propagation_rule }}</td>
-            <td>{{ item.Event_no_Event }}</td>
-            <td>{{ item.KPIs }}</td>
-            <td>{{ item.Requirement_Monitor_Type }}</td>
-            <td>{{ item.Discovery_Status }}</td>
-            <td>{{ item['Firewall_Status'] }}</td>
-            <td>{{ item['Access_Status'] }}</td>
-            <td>{{ item['Monitor_Implementation_Status'] }}</td>
-            <td>{{ item['Overall_Imp._Status'] }}</td>
-            <td>{{ item['QA_Status'] }}</td>
-            <td>{{ item['Testing_Status'] }}</td>
-            <td>{{ item['Blocking_Reasons'] }}</td>
-            <td>{{ item['Comments'] }}</td>
-            <td>{{ item['Demand_ID'] }}</td>
+            <td>{{ item.Req_ID === 'undefined' ? ' ' : item.Req_ID}}</td>
+            <td>{{ item.Technical_Service  === 'undefined' ? ' ' : item.Technical_Service}}</td>
+            <td>{{ item.Component  === 'undefined' ? ' ' : item.Component}}</td>
+            <td>{{ item.Requirement  === 'undefined' ? ' ' : item.Requirement}}</td>
+            <td>{{ item.Details  === 'undefined' ? ' ' : item.Details}}</td>
+            <td>{{ item.Type  === 'undefined' ? ' ' : item.Type}}</td>
+            <td>{{ item.Business_Service_Group_X  === 'undefined' ? ' ' : item.Business_Service_Group_X}}</td>
+            <td>{{ item.Tool  === 'undefined' ? ' ' : item.Tool}}</td>
+            <td>{{ item.Propagation_rule  === 'undefined' ? ' ' : item.Propagation_rule}}</td>
+            <td>{{ item.Event_no_Event  === 'undefined' ? ' ' : item.Event_no_Event}}</td>
+            <td>{{ item.KPIs  === 'undefined' ? ' ' : item.KPIs}}</td>
+            <td>{{ item.Requirement_Monitor_Type  === 'undefined' ? ' ' : item.Requirement_Monitor_Type}}</td>
+            <td>{{ item.Discovery_Status  === 'undefined' ? ' ' : item.Discovery_Status}}</td>
+            <td>{{ item['Firewall_Status']  === 'undefined' ? ' ' : item['Firewall_Status']}}</td>
+            <td>{{ item['Access_Status']  === 'undefined' ? ' ' : item['Access_Status']}}</td>
+            <td>{{ item['Monitor_Implementation_Status']  === 'undefined' ? ' ' : item['Monitor_Implementation_Status']}}</td>
+            <td>{{ item['Overall_Imp._Status']  === 'undefined' ? ' ' : item['Overall_Imp._Status']}}</td>
+            <td>{{ item['QA_Status']  === 'undefined' ? ' ' : item['QA_Status']}}</td>
+            <td>{{ item['Testing_Status']  === 'undefined' ? ' ' : item['Testing_Status']}}</td>
+            <td>{{ item['Blocking_Reasons']  === 'undefined' ? ' ' : item['Blocking_Reasons']}}</td>
+            <td>{{ item['Comments']  === 'undefined' ? ' ' : item['Comments']}}</td>
+            <td>{{ item['Demand_ID']  === 'undefined' ? ' ' : item['Demand_ID']}}</td>
         </tr>
         </tbody>
     </table>

@@ -1,14 +1,14 @@
 <div class="title"><h2>Vodafone UK Market</h2></div>
-<div class="container">
+<div>
     <nav>
         <ul class="menu">
             <li (click)="getServers()"><a>View All Servers</a></li>
             <li (click)="getDatabases()"><a>Market Databases</a></li>
             <li><a>
-                    <select name="selectBusinessService" id="businessService" (change)="businessServiceChange($event)">
-                        <option *ngFor="let op of listBusinessServices" [value]="op.Technical_Service"> {{op.Technical_Service}} </option>
-                    </select>
-                </a>
+                <select name="selectBusinessService" id="businessService" (change)="businessServiceChange($event)">
+                    <option *ngFor="let op of listBusinessServices" [value]="op.Technical_Service"> {{op.Technical_Service}} </option>
+                </select>
+            </a>
             </li>
             <li>
                 <a>
@@ -16,11 +16,96 @@
                         <option *ngFor="let op of listTechServices" [value]="op.Technical_Service"> {{op.Technical_Service}} </option>
                     </select>
                 </a>
-
             </li>
             <li (click)="openLink()"><a>Reports</a></li>
         </ul>
     </nav>
+</div>
+<button id="add1" *ngIf="server$.value || database$.value" type="button" class="btn btn-primary" (click)="addData()">Add</button>
+<button id="delete" *ngIf="server$.value || database$.value" type="button" class="btn btn-primary" (click)="deleteData()">delete</button>
+
+<div *ngIf="addDataDiv">
+    <div class="form-inline">
+        <div class="form-group">
+            <label for="Technical_Service_ID">Technical Service ID</label>
+            <input type="text" class="form-control" id="Technical_Service_ID" [(ngModel)]="Technical_Service_ID">
+        </div>
+        <div class="form-group">
+            <label for="Technical_Service">Technical Service</label>
+            <input type="text" class="form-control" id="Technical_Service" [(ngModel)]="Technical_Service">
+        </div>
+        <div class="form-group" *ngIf="server$.value">
+            <label for="Component">Component</label>
+            <input type="text" class="form-control" id="Component" [(ngModel)]="Component">
+        </div>
+        <div class="form-group">
+            <label for="Server_Name">Server Name</label>
+            <input type="text" class="form-control" id="Server_Name" [(ngModel)]="Server_Name">
+        </div>
+        <div class="form-group">
+            <label for="Propagation_Rule">Propagation Rule</label>
+            <input type="text" class="form-control" id="Propagation_Rule" [(ngModel)]="Propagation_Rule">
+        </div>
+        <div class="form-group">
+            <label for="Type">Type</label>
+            <input type="text" class="form-control" id="Type" [(ngModel)]="Type">
+        </div>
+        <div class="form-group">
+            <label for="Database">Database</label>
+            <input type="text" class="form-control" id="Database" [(ngModel)]="Database">
+        </div>
+        <div class="form-group" *ngIf="database$.value">
+            <label for="user">User</label>
+            <input type="text" class="form-control" id="user" [(ngModel)]="user">
+        </div>
+        <div class="form-group">
+            <label for="IP_address">IP address</label>
+            <input type="text" class="form-control" id="IP_address" [(ngModel)]="IP_address">
+        </div>
+        <div class="form-group" *ngIf="server$.value">
+            <label for="IP_address_2">IP address 2</label>
+            <input type="text" class="form-control" id="IP_address_2" [(ngModel)]="IP_address_2">
+        </div>
+        <div class="form-group" *ngIf="database$.value">
+            <label for="port">Port</label>
+            <input type="text" class="form-control" id="port" [(ngModel)]="port">
+        </div>
+        <div class="form-group">
+            <label for="OS">OS</label>
+            <input type="text" class="form-control" id="OS" [(ngModel)]="OS">
+        </div>
+        <div class="form-group" *ngIf="server$.value">
+            <label for="Physical_VM">Physical/VM</label>
+            <input type="text" class="form-control" id="Physical_VM" [(ngModel)]="Physical_VM">
+        </div>
+        <div class="form-group" *ngIf="server$.value" >
+            <label for="Location">Location</label>
+            <input type="text" class="form-control" id="Location" [(ngModel)]="Location">
+        </div>
+        <div class="form-group">
+            <label for="System_Owner">System Owner</label>
+            <input type="text" class="form-control" id="System_Owner" [(ngModel)]="System_Owner">
+        </div>
+        <div class="form-group">
+            <label for="1st_Level_Support">1st Level Support</label>
+            <input type="text" class="form-control" id="1st_Level_Support" [(ngModel)]="Level_Support_1">
+        </div>
+        <div class="form-group">
+            <label for="2nd_Level_Support">1st Level Support</label>
+            <input type="text" class="form-control" id="2nd_Level_Support" [(ngModel)]="Level_Support_2">
+        </div>
+        <div class="form-group">
+            <label for="3st_Level_Support">3st Level Support</label>
+            <input type="text" class="form-control" id="3st_Level_Support" [(ngModel)]="Level_Support_3">
+        </div>
+    </div>
+    <button id="add2" type="button" class="btn btn-primary" (click)="send()">send</button>
+</div>
+
+<div *ngIf="deleteDiv">
+    <label for="deleteField">Technical Service ID</label>
+    <input type="text" id="deleteField" [(ngModel)]="deleteId">
+    <button type="button" class="btn btn-primary" (click)="delete()">Send</button>
 </div>
 
 <div class="market-img" *ngIf="display$.value"></div>
@@ -50,22 +135,22 @@
 
         <tbody>
         <tr *ngFor="let item of data">
-            <td>{{ item.Technical_Service_ID }}</td>
-            <td>{{ item.Technical_Service }}</td>
-            <td>{{ item.Component }}</td>
-            <td>{{ item.Server_Name }}</td>
-            <td>{{ item.Propagation_Rule }}</td>
-            <td>{{ item.Type }}</td>
-            <td>{{ item.Database }}</td>
-            <td>{{ item.IP_address }}</td>
-            <td>{{ item.IP_address_2 }}</td>
-            <td>{{ item.OS }}</td>
-            <td>{{ item['Physical/VM'] }}</td>
-            <td>{{ item.Location }}</td>
-            <td>{{ item.System_Owner }}</td>
-            <td>{{ item['1st_Level_Support'] }}</td>
-            <td>{{ item['2nd_Level_Support'] }}</td>
-            <td>{{ item['3rd_Level_Support'] }}</td>
+            <td>{{ item.Technical_Service_ID === 'undefined' ? ' ' : item.Technical_Service_ID}}</td>
+            <td>{{ item.Technical_Service === 'undefined' ? ' ' : item.Technical_Service}}</td>
+            <td>{{ item.Component === 'undefined' ? ' ' : item.Component}}</td>
+            <td>{{ item.Server_Name === 'undefined' ? ' ' : item.Server_Name}}</td>
+            <td>{{ item.Propagation_Rule === 'undefined' ? ' ' : item.Propagation_Rule}}</td>
+            <td>{{ item.Type === 'undefined' ? ' ' : item.Type}}</td>
+            <td>{{ item.Database === 'undefined' ? ' ' : item.Database}}</td>
+            <td>{{ item.IP_address === 'undefined' ? ' ' : item.IP_address}}</td>
+            <td>{{ item.IP_address_2 === 'undefined' ? ' ' : item.IP_address_2}}</td>
+            <td>{{ item.OS === 'undefined' ? ' ' : item.OS}}</td>
+            <td>{{ item['Physical/VM'] === 'undefined' ? ' ' : item['Physical/VM']}}</td>
+            <td>{{ item.Location === 'undefined' ? ' ' : item.Location}}</td>
+            <td>{{ item.System_Owner === 'undefined' ? ' ' : item.System_Owner}}</td>
+            <td>{{ item['1st_Level_Support'] === 'undefined' ? ' ' : item['1st_Level_Support']}}</td>
+            <td>{{ item['2nd_Level_Support'] === 'undefined' ? ' ' : item['2nd_Level_Support']}}</td>
+            <td>{{ item['3rd_Level_Support'] === 'undefined' ? ' ' : item['3rd_Level_Support']}}</td>
         </tr>
         </tbody>
     </table>
@@ -93,20 +178,20 @@
         </thead>
         <tbody>
         <tr *ngFor="let item of data">
-            <td>{{ item.Technical_Service_ID }}</td>
-            <td>{{ item.Technical_Service }}</td>
-            <td>{{ item.Data_Base }}</td>
-            <td>{{ item.Server_Name }}</td>
-            <td>{{ item.Propagation_Rule }}</td>
-            <td>{{ item.Type }}</td>
-            <td>{{ item.user }}</td>
-            <td>{{ item.IP_address }}</td>
-            <td>{{ item.Port }}</td>
-            <td>{{ item.OS }}</td>
-            <td>{{ item.System_Owner }}</td>
-            <td>{{ item['1st_Level_Support'] }}</td>
-            <td>{{ item['2nd_Level_Support'] }}</td>
-            <td>{{ item['3rd_Level_Support'] }}</td>
+            <td>{{ item.Technical_Service_ID  === 'undefined' ? ' ' : item.Technical_Service_ID }}</td>
+            <td>{{ item.Technical_Service  === 'undefined' ? ' ' : item.Technical_Service}}</td>
+            <td>{{ item.Data_Base  === 'undefined' ? ' ' : item.Data_Base}}</td>
+            <td>{{ item.Server_Name  === 'undefined' ? ' ' : item.Server_Name}}</td>
+            <td>{{ item.Propagation_Rule  === 'undefined' ? ' ' : item.Propagation_Rule}}</td>
+            <td>{{ item.Type  === 'undefined' ? ' ' : item.Type}}</td>
+            <td>{{ item.user  === 'undefined' ? ' ' : item.user}}</td>
+            <td>{{ item.IP_address  === 'undefined' ? ' ' : item.IP_address}}</td>
+            <td>{{ item.Port  === 'undefined' ? ' ' : item.Port}}</td>
+            <td>{{ item.OS  === 'undefined' ? ' ' : item.OS}}</td>
+            <td>{{ item.System_Owner  === 'undefined' ? ' ' : item.System_Owner}}</td>
+            <td>{{ item['1st_Level_Support']  === 'undefined' ? ' ' : item['1st_Level_Support']}}</td>
+            <td>{{ item['2nd_Level_Support']  === 'undefined' ? ' ' : item['2nd_Level_Support']}}</td>
+            <td>{{ item['3rd_Level_Support']  === 'undefined' ? ' ' : item['3rd_Level_Support']}}</td>
         </tr>
         </tbody>
     </table>

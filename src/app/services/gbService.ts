@@ -26,9 +26,25 @@ export class GbService {
         return this.http.get(this.url + '/technicalServiceForUk');
     }
 
-    getPdf() {
-        this.http.get(this.url + '/pdf', {responseType: 'blob'}).subscribe(data => {
+    getPdf(pdfName: any) {
+        this.http.post(this.url + '/pdf', pdfName, {responseType: 'blob'}).subscribe(data => {
             window.open(window.URL.createObjectURL(data));
         });
+    }
+
+    addDataToServer(s: any) {
+        return this.http.post(this.url + '/addToServerUk', s);
+    }
+
+    addDataToDatabase(s: any) {
+        return this.http.post(this.url + '/addToDatabaseUk', s);
+    }
+
+    deleteMarketServer(s: any) {
+        return this.http.post(this.url + '/deleteFromServerUk', s);
+    }
+
+    deleteDatabase(s: any) {
+        return this.http.post(this.url + '/deleteFromDatabaseUk', s);
     }
 }
